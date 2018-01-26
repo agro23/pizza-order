@@ -1,0 +1,9 @@
+body {
+  margin: auto;
+  padding: 1em;
+}
+
+p {
+  background-color: lightgray;
+  display: inline;
+}
