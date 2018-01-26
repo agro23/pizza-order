@@ -3,16 +3,16 @@
 function Pizza (size, toppings) {
   // this.size = ["Small"]; // expext an array of sizes
   // this.toppings = ["Pepperoni", "Olives"]; // expext an array of toppings
-  this.size = size; // expext an string of size
+  this.size = size;
   this.toppings = toppings; // expext an array of toppings
-
+  this.basecost = 10.99; // basic pizza cost
+  // this.multiplier = 1; // size multiplier default Medium
 }
 
 Pizza.prototype.cost = function () {
-  var baseCost = 10.99;
-  var multiplier = 1;
   var size = this.size;
-  // console.log("mySize in cost: " + this.size + " and it's a " + typeof(size));
+  var multiplier = 1;
+  var yourcost = 0;
     if (size === "Personal") {
       console.log ("Size in cost method is: " + this.size);
       multiplier = .7 ;
@@ -25,12 +25,14 @@ Pizza.prototype.cost = function () {
     } else if (size === "Large") {
       console.log ("Size in cost method is: " + this.size);
       multiplier = 1.33 ;
-    } else {
-      // (size === "Extra Large")
+    } else if (size === "Extra Large") {
       console.log ("Size in cost method is: " + this.size);
       multiplier = 1.75 ;
+    } else {
+      multiplier = 0;
     }
-    var yourCost = (baseCost * multiplier + this.toppings.length-1).toFixed(2);
+    yourCost = (this.basecost * multiplier + this.toppings.length-1).toFixed(2);
+    // this.toppings.length-1 adds $1 for every topping after the one gratis topping.
   return yourCost;
 };
 
@@ -41,6 +43,7 @@ function randomToppings(someToppings){
 }
 
 function buildSizeForm() {
+  // build the sizes form on the fly so if the sizes offered ever changes we're coverd.
   var sizeFormHtml =
     '<select class="form-control" id="pizzaSizes">' +
       '<option>Personal</option>' +
@@ -52,42 +55,52 @@ function buildSizeForm() {
   $("#sizes").html(sizeFormHtml);
 }
 
-function showPizza(myPizza){
-  // var pizzaHtml = "</div>" + myPizza + "</div>"
+function buildToppingsForm(someToppings) {
+  // build the toppings form on the fly so if the toppings list array changes we're coverd.
+  var pizzaFormHtml = '<select class="form-control" id="pizzaToppings">';
+  for (var i = 0; i < someToppings.length; i++) {
+    pizzaFormHtml += "<option>" + someToppings[i] + "</option>";
+  }
+  pizzaFormHtml += '</select>';
+  $("#toppings").html(pizzaFormHtml);
+}
+
+// User Interface Logic
+
+function showPizza(myPizza, newSize, newToppings){
   var pizzaHtml = "</div> YOUR ORDER: " + "<br>" + "ONE " + myPizza.size + " pizza with " + myPizza.toppings + "</div>"
-  // console.log("myPizza: " + JSON.stringify(myPizza.toString()));
-  // pizzaHtml += "<br>That will be: " + myPizza.cost("Small", ["Pepperoni"]) + " please."
-  pizzaHtml += "<br>That will be: " + myPizza.cost(myPizza.size, myPizza.toppings) + " please."
-  // pizzaHtml += "<br>That will be: " + myPizza.cost() + " please."
+  pizzaHtml += "<br>That will be: " + myPizza.cost(newSize, newToppings) + " please."
   $("#pizza").html(pizzaHtml);
   $("#pizzaViewer").show();
 }
 
-// User Interface Logic
 $(document).ready(function(event) {
-    buildSizeForm();
-  // $("form#name-form").submit(function(event) {
-    // var aPizza = "Small Pepperoni"
-    // showPizza(aPizza);
     var sizes = ["Personal", "Small", "Medium", "Large", "Extra Large"];
     var toppings = ["Pepperoni", "Pineapple", "Canadian Bacon", "Sausage", "Mushrooms", "Mozzarella Cheese", "Onion", "Garlic", "Bell Peppers", "Olives"];
+
+    buildSizeForm();
+    buildToppingsForm(toppings);
+
     var randomSizesIndex = Math.floor(Math.random() * sizes.length);
     console.log("Random size: " + sizes[randomSizesIndex]);
     var randomToppingIndex = Math.floor(Math.random() * toppings.length);
     console.log("Random toppings: " + toppings[randomToppingIndex]);
     // var newPizza = new Pizza(sizes[1], ["Pepperoni", "Olives"]);
     // var randomToppings = [ toppings[Math.floor(Math.random() * toppings.length)], toppings[Math.floor(Math.random() * toppings.length)] ];
-    var newPizza = new Pizza(sizes[randomSizesIndex], randomToppings(toppings) );
-
-
-    console.log("newPizza's cost: " + newPizza.cost());
-    showPizza(newPizza);
+    // var newPizza = new Pizza(sizes[randomSizesIndex], randomToppings(toppings) );
+    //
+    //
+    // console.log("newPizza's cost: " + newPizza.cost());
+    // showPizza(newPizza);
 
     $("form#pizzaForm").submit(function(event) {
       var newSize = $("#pizzaSizes").val();
+      var newToppings = $("#pizzaToppings").val();
+      var testToppings = [newToppings];
       console.log("Size choice = " + newSize);
       event.preventDefault();
-      var newPizza = new Pizza(newSize, randomToppings(toppings));
+      // var newPizza = new Pizza(newSize, randomToppings(toppings));
+      var newPizza = new Pizza(newSize, testToppings); // instead of new toppings
       showPizza(newPizza);
       console.log("Chosen pizza is: " + newPizza);
     });
