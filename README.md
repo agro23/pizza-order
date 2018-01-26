@@ -61,13 +61,17 @@ Order Pizza
   - Example Output: ONE Large pizza with Pepperoni,Olives
                     That will be: $14.62 please.
 
-* The program accepts user input to alter the topping choice (Input via a form with submit) <--
-  - Example Input:
+* The program accepts user input to alter the topping choice (Input via a form with submit)
+  - Example Input: Pepperoni / Medium
   - Example Output:
+    * ONE Medium pizza with Pepperoni
+    * That will be: 10.99 please.
 
-* The program lets the user pick multiple toppings (Input via a form with submit)
-  - Example Input:
+* The program lets the user pick multiple toppings (Input via a form with multiple select)
+  - Example Input: Pepperoni/Sausage/Olives / Medium
   - Example Output:
+    * ONE Medium pizza with Pepperoni,Sausage,Olives
+    * That will be: 12.99 please.
 
 * The user's choices are displayed to an appropriate Output panel
 

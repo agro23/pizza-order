@@ -32,6 +32,7 @@ Pizza.prototype.cost = function () {
       multiplier = 0;
     }
     yourCost = (this.basecost * multiplier + this.toppings.length-1).toFixed(2);
+    console.log("Toppings are: " + this.toppings);
     // this.toppings.length-1 adds $1 for every topping after the one gratis topping.
   return yourCost;
 };
@@ -57,7 +58,7 @@ function buildSizeForm() {
 
 function buildToppingsForm(someToppings) {
   // build the toppings form on the fly so if the toppings list array changes we're coverd.
-  var pizzaFormHtml = '<select class="form-control" id="pizzaToppings">';
+  var pizzaFormHtml = '<select multiple size="1" class="form-control" id="pizzaToppings">';
   for (var i = 0; i < someToppings.length; i++) {
     pizzaFormHtml += "<option>" + someToppings[i] + "</option>";
   }
@@ -72,6 +73,12 @@ function showPizza(myPizza, newSize, newToppings){
   pizzaHtml += "<br>That will be: " + myPizza.cost(newSize, newToppings) + " please."
   $("#pizza").html(pizzaHtml);
   $("#pizzaViewer").show();
+  // $('#pizzaForm')[0].reset();
+  $('#pizzaForm option[selected="selected"]').each(
+    function() {
+        $(this).removeAttr('selected');
+    }
+  );
 }
 
 $(document).ready(function(event) {
@@ -85,50 +92,17 @@ $(document).ready(function(event) {
     console.log("Random size: " + sizes[randomSizesIndex]);
     var randomToppingIndex = Math.floor(Math.random() * toppings.length);
     console.log("Random toppings: " + toppings[randomToppingIndex]);
-    // var newPizza = new Pizza(sizes[1], ["Pepperoni", "Olives"]);
-    // var randomToppings = [ toppings[Math.floor(Math.random() * toppings.length)], toppings[Math.floor(Math.random() * toppings.length)] ];
-    // var newPizza = new Pizza(sizes[randomSizesIndex], randomToppings(toppings) );
-    //
-    //
-    // console.log("newPizza's cost: " + newPizza.cost());
-    // showPizza(newPizza);
 
     $("form#pizzaForm").submit(function(event) {
       var newSize = $("#pizzaSizes").val();
-      var newToppings = $("#pizzaToppings").val();
-      var testToppings = [newToppings];
+      // var newToppings = $("#pizzaToppings").val();
+      var newToppings = $('#pizzaToppings').val();
+
       console.log("Size choice = " + newSize);
       event.preventDefault();
       // var newPizza = new Pizza(newSize, randomToppings(toppings));
-      var newPizza = new Pizza(newSize, testToppings); // instead of new toppings
+      var newPizza = new Pizza(newSize, newToppings); // instead of new toppings
       showPizza(newPizza);
       console.log("Chosen pizza is: " + newPizza);
     });
-
-    // $("form#some-form").submit(function(event) {
-    //   var someInput = $("input#some-input").val();
-    //
-    //   event.preventDefault();
-    // });
-
-  //   name = $("#username").val();
-  //   $("#user-name").replaceWith(", " + name + ". P");
-  // });
-  // $("form#number-form").submit(function(event) {
-  //   event.preventDefault();
-  //   if ((name === "") || (name === null)) {   // trap for empty string and null!
-  //     name = "Dave";
-  //   }
-  //   $("#results-p").empty(); // empty the DOM section
-  //   var myNumber = $("#number").val();
-  //   var direction = $("input:radio[name=direction]:checked").val();
-  //   if (isValidInput(myNumber)) {
-  //     myNumber = loopTheirNumber(myNumber, direction, name);
-  //     myNumber = "<span class='myNumberFormat'>" + myNumber + "</span>";
-  //     $("#results h2").text("RESULTS:");
-  //     $("#results-p").append("<span class='myNumberFormat'><strong>Your Number: </strong><span class='output'>" + $("#number").val() + "</span></span><br>" +myNumber);
-  //     $("#results").show();
-  //   }
-  //   $("#number").val(""); // clear the text form value
-  // });
 });
