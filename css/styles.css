@@ -3,6 +3,10 @@ body {
   padding: 1em;
 }
 
+h4 {
+  padding: 1em;
+}
+
 p {
   background-color: lightgray;
   display: inline;

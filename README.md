@@ -41,23 +41,18 @@ Order Pizza
 
 * The program creates a Pizza object with sizes and toppings and a method to calculate the cost
 
-* The program shows a pizza with a random sizes chosen from multiples.
-  - Example Output: Here's your pizza: LARGE
-  - Example Output: Here's your pizza: SMALL etc.
-
-* The program shows a pizza with a random sizes chosen from multiples.
-  - Example Output: Here's your pizza: LARGE
-  - Example Output: Here's your pizza: SMALL etc.
+* The program shows a pizza with a random size chosen from multiples.
+  - Example Output: Random size: Personal
 
 * The program shows a pizza with a random topping chosen from multiples.
-  - Example Output: Here's your pizza: PEPPERONI
-  - Example Output: Here's your pizza: PINEAPPLE
+  - Example Output: Random toppings: Pineapple
 
-* The program shows the cost of sample pizzas based on a scratch formula <-- 
+* The program shows the cost of sample pizzas based on a scratch formula
   - Example Input:
-  - Example Output:
+  - Example Output: ONE Small pizza with Pepperoni,Olives
+                    That will be: 8.49 please.
 
-* The program accepts user input to alter the size (Input via a form with submit)
+* The program accepts user input to alter the size (Input via a form with submit) <--
   - Example Input:
   - Example Output:
 

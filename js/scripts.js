@@ -1,34 +1,47 @@
 // Business Logic
 
 function Pizza (size, toppings) {
-  this.size = ["Small"]; // expext an array of sizes
-  this.toppings = ["Pepperoni"]; // expext an array of toppings
+  // this.size = ["Small"]; // expext an array of sizes
+  // this.toppings = ["Pepperoni", "Olives"]; // expext an array of toppings
+  this.size = size; // expext an string of size
+  this.toppings = toppings; // expext an array of toppings
+
 }
 
-// Pizza.prototype.cost = function (pizzaSize, pizzaToppings) {
-  // var baseCost = 9.99;
-  // var multiplier =1;
-  // if (pizzaSize === "Small") {
-  //   baseCost = 9.99;
-  // }
-  // if (pizzaToppings.length === 1 ) {
-  //   multiplier = .75;
-  // }
-//   this.yourCost = baseCost * multiplier;
-//   return this.yourCost;
-// };
-
 Pizza.prototype.cost = function () {
-  this.yourCost = 1;
-  return this.yourCost;
+  var baseCost = 10.99;
+  var multiplier = 1;
+  var size = this.size;
+  // console.log("mySize in cost: " + this.size + " and it's a " + typeof(size));
+    if (size === "Personal") {
+      console.log ("Size in cost method is: " + this.size);
+      multiplier = .7 ;
+    } else if (size === "Small") {
+      console.log ("Size in cost method is: " + this.size);
+      multiplier = .85 ;
+    } else if (size === "Medium") {
+      console.log ("Size in cost method is: " + this.size);
+      multiplier = 1 ;
+    } else if (size === "Large") {
+      console.log ("Size in cost method is: " + this.size);
+      multiplier = 1.33 ;
+    } else {
+      // (size === "Extra Large")
+      console.log ("Size in cost method is: " + this.size);
+      multiplier = 1.75 ;
+    }
+    var yourCost = (baseCost * multiplier + this.toppings.length-1).toFixed(2);
+  return yourCost;
 };
+
 
 function showPizza(myPizza){
   // var pizzaHtml = "</div>" + myPizza + "</div>"
   var pizzaHtml = "</div> YOUR ORDER: " + "<br>" + "ONE " + myPizza.size + " pizza with " + myPizza.toppings + "</div>"
-  console.log("myPizza: " + JSON.stringify(myPizza.toString()));
-  // pizzaHtml += "<br>That will be: " + myPizza.cost(myPizza.size, [myPizza.toppings]) + " please."
-  pizzaHtml += "<br>That will be: " + myPizza.cost() + " please."
+  // console.log("myPizza: " + JSON.stringify(myPizza.toString()));
+  // pizzaHtml += "<br>That will be: " + myPizza.cost("Small", ["Pepperoni"]) + " please."
+  pizzaHtml += "<br>That will be: " + myPizza.cost(myPizza.size, myPizza.toppings) + " please."
+  // pizzaHtml += "<br>That will be: " + myPizza.cost() + " please."
   $("#pizza").html(pizzaHtml);
   $("#pizzaViewer").show();
 }
@@ -41,10 +54,14 @@ $(document).ready(function(event) {
     var sizes = ["Personal", "Small", "Medium", "Large", "Extra Large"];
     var toppings = ["Pepperoni", "Pineapple", "Canadian Bacon", "Sausage", "Mushrooms", "Mozzarella Cheese", "Onion", "Garlic", "Bell Peppers", "Olives"];
     var randomSizesIndex = Math.floor(Math.random() * sizes.length);
-    console.log(sizes[randomSizesIndex]);
+    console.log("Random size: " + sizes[randomSizesIndex]);
     var randomToppingIndex = Math.floor(Math.random() * toppings.length);
-    console.log(toppings[randomToppingIndex]);
-    var newPizza = new Pizza();
+    console.log("Random toppings: " + toppings[randomToppingIndex]);
+    // var newPizza = new Pizza(sizes[1], ["Pepperoni", "Olives"]);
+    var randomToppings = [ toppings[Math.floor(Math.random() * toppings.length)], toppings[Math.floor(Math.random() * toppings.length)] ];
+    var newPizza = new Pizza(sizes[randomSizesIndex], randomToppings);
+
+
     console.log("newPizza's cost: " + newPizza.cost());
     showPizza(newPizza);
 
