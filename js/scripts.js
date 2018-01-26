@@ -34,6 +34,23 @@ Pizza.prototype.cost = function () {
   return yourCost;
 };
 
+function randomToppings(someToppings){
+  // alert("Toppings: " + someToppings);
+  var myToppings = [ someToppings[Math.floor(Math.random() * someToppings.length)], someToppings[Math.floor(Math.random() * someToppings.length)] ];
+  return myToppings;
+}
+
+function buildSizeForm() {
+  var sizeFormHtml =
+    '<select class="form-control" id="pizzaSizes">' +
+      '<option>Personal</option>' +
+      '<option>Small</option>' +
+      '<option>Medium</option>' +
+      '<option>Large</option>' +
+      '<option>Extra Large</option>' +
+    '</select>';
+  $("#sizes").html(sizeFormHtml);
+}
 
 function showPizza(myPizza){
   // var pizzaHtml = "</div>" + myPizza + "</div>"
@@ -48,6 +65,7 @@ function showPizza(myPizza){
 
 // User Interface Logic
 $(document).ready(function(event) {
+    buildSizeForm();
   // $("form#name-form").submit(function(event) {
     // var aPizza = "Small Pepperoni"
     // showPizza(aPizza);
@@ -58,12 +76,27 @@ $(document).ready(function(event) {
     var randomToppingIndex = Math.floor(Math.random() * toppings.length);
     console.log("Random toppings: " + toppings[randomToppingIndex]);
     // var newPizza = new Pizza(sizes[1], ["Pepperoni", "Olives"]);
-    var randomToppings = [ toppings[Math.floor(Math.random() * toppings.length)], toppings[Math.floor(Math.random() * toppings.length)] ];
-    var newPizza = new Pizza(sizes[randomSizesIndex], randomToppings);
+    // var randomToppings = [ toppings[Math.floor(Math.random() * toppings.length)], toppings[Math.floor(Math.random() * toppings.length)] ];
+    var newPizza = new Pizza(sizes[randomSizesIndex], randomToppings(toppings) );
 
 
     console.log("newPizza's cost: " + newPizza.cost());
     showPizza(newPizza);
+
+    $("form#pizzaForm").submit(function(event) {
+      var newSize = $("#pizzaSizes").val();
+      console.log("Size choice = " + newSize);
+      event.preventDefault();
+      var newPizza = new Pizza(newSize, randomToppings(toppings));
+      showPizza(newPizza);
+      console.log("Chosen pizza is: " + newPizza);
+    });
+
+    // $("form#some-form").submit(function(event) {
+    //   var someInput = $("input#some-input").val();
+    //
+    //   event.preventDefault();
+    // });
 
   //   name = $("#username").val();
   //   $("#user-name").replaceWith(", " + name + ". P");

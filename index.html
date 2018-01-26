@@ -17,20 +17,23 @@
         <div class = "row">
           <h4> A medium, one topping Pizza costs $10.99. Each additional topping is $1. Delivery is an additional $2 (+ $1 / mile after)</h4>
         </div>
-        <div class = "row">
-          <div class = "col-xs-1">
-            <p></p>
-          </div>
-          <div class = "col-md-5">
-            <p>TOPPINGS</p>
-          </div>
-          <div class = "col-md-5">
-            <p>SIZES</p>
-          </div>
-          <div class = "col-sm-1">
-            <button id="order" class="btn btn-primary">ORDER</button>
-          </div>
-        </div>
+        <form id ="pizzaForm">
+          <div class = "row"> <!-- row for form -->
+            <div class = "col-xs-1">
+              <p></p>
+            </div>
+            <div class = "col-md-5 form-group">
+              <p>TOPPINGS</p>
+            </div>
+            <div class = "col-md-5 form-group">
+              <!-- <p>SIZES</p> -->
+              <div id="sizes"></div>
+            </div>
+            <div class = "col-sm-1">
+              <button id="order" type="submit" class="btn btn-primary">ORDER</button>
+            </div>
+          </div> <!-- end row for form -->
+        </form>
       </div>
       <div id = "pizzaViewer" class = "row well">
         <div id = "pizza"></div>

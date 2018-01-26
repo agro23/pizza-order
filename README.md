@@ -52,11 +52,16 @@ Order Pizza
   - Example Output: ONE Small pizza with Pepperoni,Olives
                     That will be: 8.49 please.
 
-* The program accepts user input to alter the size (Input via a form with submit) <--
-  - Example Input:
-  - Example Output:
+* The program accepts user input to choose the size (Input via a Select Box and form with submit)
+  - Example Input: > Large --> SUBMIT
+  - Example Output: Size choice = Large
 
-* The program accepts user input to alter the topping choice (Input via a form with submit)
+* The program accepts user input to choose the size and 'orders' that size plus random toppings
+  - Example Input: > > Large --> SUBMIT
+  - Example Output: ONE Large pizza with Pepperoni,Olives
+                    That will be: $14.62 please.
+
+* The program accepts user input to alter the topping choice (Input via a form with submit) <--
   - Example Input:
   - Example Output:
 
