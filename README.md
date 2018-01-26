@@ -37,10 +37,13 @@ Order Pizza
 **display choice(s) back to them.**
 
 * The program shows a pizza
-  - Example Input: 0
-  - Example Output: Beep!
+  - Example Output: Here's your pizza!
 
 * The program creates a Pizza object with sizes and toppings and a method to calculate the cost
+
+* The program shows a pizza with a random sizes chosen from multiples.
+  - Example Output: Here's your pizza: LARGE
+  - Example Output: Here's your pizza: SMALL etc.
 
 * The program shows a pizza with a random sizes chosen from multiples.
   - Example Output: Here's your pizza: LARGE
@@ -50,7 +53,7 @@ Order Pizza
   - Example Output: Here's your pizza: PEPPERONI
   - Example Output: Here's your pizza: PINEAPPLE
 
-* The program shows the cost of sample pizzas based on a scratch formula
+* The program shows the cost of sample pizzas based on a scratch formula <-- 
   - Example Input:
   - Example Output:
 

@@ -7,3 +7,8 @@ p {
   background-color: lightgray;
   display: inline;
 }
+
+#pizzaView {
+  background-color: lightgray;
+  display: hidden;
+}
