@@ -1,10 +1,72 @@
-body {
+/*html {
+  background: url(../img/moreCheese.jpg)
+  no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}*/
+
+html {
+  background:  url(../img/pattern.jpg)
+  no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   margin: auto;
-  padding: 1em;
 }
 
-h4 {
+body {
+  margin: 8em;
+  padding: .5em;
+  background:  url(../img/slice.jpg)
+  no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.container {
   padding: 1em;
+  background: linear-gradient(red, green);
+}
+
+.jumbotron{
+  background:  url(../img/flag2.jpg)
+  no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  text-shadow: 3px 3px 3px gray;
+}
+
+.myContainer {
+  height: 25%;
+  margin: 2%;
+  padding: auto;
+}
+
+.styling{
+  margin-left: 5em;
+  margin-right: 5em;
+  background: linear-gradient(white, gray);
+}
+.goLeft{
+  margin-right: 1em;
+}
+.menu-row{
+  margin: 5em;
+  padding: 5em;
+  border: 1px solid blue;
+}
+
+h1, h4 {
+  padding: 1em;
+  text-align: center;
 }
 
 p {

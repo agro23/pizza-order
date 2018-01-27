@@ -1,12 +1,9 @@
 // Business Logic
 
 function Pizza (size, toppings) {
-  // this.size = ["Small"]; // expext an array of sizes
-  // this.toppings = ["Pepperoni", "Olives"]; // expext an array of toppings
   this.size = size;
   this.toppings = toppings; // expext an array of toppings
   this.basecost = 10.99; // basic pizza cost
-  // this.multiplier = 1; // size multiplier default Medium
 }
 
 Pizza.prototype.cost = function () {
@@ -37,32 +34,25 @@ Pizza.prototype.cost = function () {
   return yourCost;
 };
 
-function randomToppings(someToppings){
-  // alert("Toppings: " + someToppings);
-  var myToppings = [ someToppings[Math.floor(Math.random() * someToppings.length)], someToppings[Math.floor(Math.random() * someToppings.length)] ];
-  return myToppings;
-}
-
-function buildSizeForm() {
+function buildSizeForm(someSizes) {
   // build the sizes form on the fly so if the sizes offered ever changes we're coverd.
-  var sizeFormHtml =
-    '<select class="form-control" id="pizzaSizes">' +
-      '<option>Personal</option>' +
-      '<option>Small</option>' +
-      '<option>Medium</option>' +
-      '<option>Large</option>' +
-      '<option>Extra Large</option>' +
-    '</select>';
-  $("#sizes").html(sizeFormHtml);
+  console.log("sizes: " + sizes);
+  var sizesFormHtml =
+    '<div class="form-group"><label for="pizzaToppings"><h4>Choose your size:</h4></label><select class="form-control" id="pizzaSizes">';
+    for (var i=0; i < someSizes.length; i++){
+      sizesFormHtml += "<option>" + someSizes[i] + "</option>";
+    }
+    sizesFormHtml += '</select></div>';
+  $("#sizes").html(sizesFormHtml);
 }
 
 function buildToppingsForm(someToppings) {
   // build the toppings form on the fly so if the toppings list array changes we're coverd.
-  var pizzaFormHtml = '<select multiple size="1" class="form-control" id="pizzaToppings">';
+  var pizzaFormHtml = '<div class="form-group"><label for="pizzaToppings"><h4>Choose your toppings:</h4></label><select multiple size="5" class="form-control" id="pizzaToppings">';
   for (var i = 0; i < someToppings.length; i++) {
     pizzaFormHtml += "<option>" + someToppings[i] + "</option>";
   }
-  pizzaFormHtml += '</select>';
+  pizzaFormHtml += '</select></div>';
   $("#toppings").html(pizzaFormHtml);
 }
 
@@ -73,7 +63,7 @@ function showPizza(myPizza, newSize, newToppings){
   pizzaHtml += "<br>That will be: " + myPizza.cost(newSize, newToppings) + " please."
   $("#pizza").html(pizzaHtml);
   $("#pizzaViewer").show();
-  // $('#pizzaForm')[0].reset();
+  $('#pizzaForm')[0].reset();
   $('#pizzaForm option[selected="selected"]').each(
     function() {
         $(this).removeAttr('selected');
@@ -85,7 +75,7 @@ $(document).ready(function(event) {
     var sizes = ["Personal", "Small", "Medium", "Large", "Extra Large"];
     var toppings = ["Pepperoni", "Pineapple", "Canadian Bacon", "Sausage", "Mushrooms", "Mozzarella Cheese", "Onion", "Garlic", "Bell Peppers", "Olives"];
 
-    buildSizeForm();
+    buildSizeForm(sizes);
     buildToppingsForm(toppings);
 
     var randomSizesIndex = Math.floor(Math.random() * sizes.length);
@@ -99,10 +89,30 @@ $(document).ready(function(event) {
       var newToppings = $('#pizzaToppings').val();
 
       console.log("Size choice = " + newSize);
-      event.preventDefault();
       // var newPizza = new Pizza(newSize, randomToppings(toppings));
       var newPizza = new Pizza(newSize, newToppings); // instead of new toppings
       showPizza(newPizza);
       console.log("Chosen pizza is: " + newPizza);
+
+      event.preventDefault();
+
+
+// var bigOrder = prompt("How many pizzas do you want?");
+// var order = [];
+//       for (var i = 0; i < parseInt(bigOrder); i++){
+//       var newPizza = new Pizza(newSize, newToppings); // instead of new toppings
+//       showPizza(newPizza);
+//       console.log("Chosen pizza is: " + newPizza);
+//       order.push(newPizza);
+//     }
+//
+// console.log("You have " + order.length + " pizzas to pay for now!");
+// console.log("Because this is orders: " + order);
+// // console.log("And order #18 is " + order[17]);
+
+      // orderMultiple();
+
+
+
     });
 });

@@ -73,7 +73,7 @@ Order Pizza
     * ONE Medium pizza with Pepperoni,Sausage,Olives
     * That will be: 12.99 please.
 
-* The user's choices are displayed to an appropriate Output panel
+* The user's choices are displayed to an appropriate Output panel <--
 
 * Output results formatted to look nicer
 
