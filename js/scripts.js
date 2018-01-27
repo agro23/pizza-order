@@ -59,60 +59,35 @@ function buildToppingsForm(someToppings) {
 // User Interface Logic
 
 function showPizza(myPizza, newSize, newToppings){
-  var pizzaHtml = "</div> YOUR ORDER: " + "<br>" + "ONE " + myPizza.size + " pizza with " + myPizza.toppings + "</div>"
-  pizzaHtml += "<br>That will be: " + myPizza.cost(newSize, newToppings) + " please."
+  var formattedToppings = myPizza.toppings[0];
+  for (var i=1; i < myPizza.toppings.length; i++){
+    formattedToppings += ", " + myPizza.toppings[i] ;
+  }
+  formattedToppings += "."
+  // console.log("formattedToppings " + formattedToppings);
+  // var pizzaHtml = "</div> YOUR ORDER: " + "<br>" + "One " + myPizza.size.toLowerCase() + " pizza with " + myPizza.toppings + "</div>";
+  var pizzaHtml = "<div> YOUR ORDER: " + "<br>" + "One " + myPizza.size.toLowerCase() + " pizza with " + formattedToppings + "</div>";
+  pizzaHtml += "<br>That will be: $" + myPizza.cost(newSize, newToppings) + " please."
   $("#pizza").html(pizzaHtml);
   $("#pizzaViewer").show();
   $('#pizzaForm')[0].reset();
-  $('#pizzaForm option[selected="selected"]').each(
-    function() {
-        $(this).removeAttr('selected');
-    }
-  );
 }
 
 $(document).ready(function(event) {
-    var sizes = ["Personal", "Small", "Medium", "Large", "Extra Large"];
-    var toppings = ["Pepperoni", "Pineapple", "Canadian Bacon", "Sausage", "Mushrooms", "Mozzarella Cheese", "Onion", "Garlic", "Bell Peppers", "Olives"];
-
-    buildSizeForm(sizes);
-    buildToppingsForm(toppings);
-
-    var randomSizesIndex = Math.floor(Math.random() * sizes.length);
-    console.log("Random size: " + sizes[randomSizesIndex]);
-    var randomToppingIndex = Math.floor(Math.random() * toppings.length);
-    console.log("Random toppings: " + toppings[randomToppingIndex]);
-
-    $("form#pizzaForm").submit(function(event) {
-      var newSize = $("#pizzaSizes").val();
-      // var newToppings = $("#pizzaToppings").val();
-      var newToppings = $('#pizzaToppings').val();
-
-      console.log("Size choice = " + newSize);
-      // var newPizza = new Pizza(newSize, randomToppings(toppings));
-      var newPizza = new Pizza(newSize, newToppings); // instead of new toppings
-      showPizza(newPizza);
-      console.log("Chosen pizza is: " + newPizza);
-
-      event.preventDefault();
-
-
-// var bigOrder = prompt("How many pizzas do you want?");
-// var order = [];
-//       for (var i = 0; i < parseInt(bigOrder); i++){
-//       var newPizza = new Pizza(newSize, newToppings); // instead of new toppings
-//       showPizza(newPizza);
-//       console.log("Chosen pizza is: " + newPizza);
-//       order.push(newPizza);
-//     }
-//
-// console.log("You have " + order.length + " pizzas to pay for now!");
-// console.log("Because this is orders: " + order);
-// // console.log("And order #18 is " + order[17]);
-
-      // orderMultiple();
-
-
-
-    });
+  var sizes = ["Personal", "Small", "Medium", "Large", "Extra Large"];
+  var toppings = ["Pepperoni", "Pineapple", "Canadian Bacon", "Sausage", "Mushrooms", "Mozzarella Cheese", "Onion", "Garlic", "Bell Peppers", "Olives"];
+  buildSizeForm(sizes);
+  buildToppingsForm(toppings);
+  $("form#pizzaForm").submit(function(event) {
+    var newSize = $("#pizzaSizes").val();
+    // var newToppings = $("#pizzaToppings").val();
+    var newToppings = $('#pizzaToppings').val();
+    if ( ( (newSize === "") || (newSize === null) ) || ( (newToppings.length === 0 ) || (newToppings === null) ) ) {
+      alert("Please select some toppings and a size");
+    } else {
+    var newPizza = new Pizza(newSize, newToppings); // instead of new toppings
+    showPizza(newPizza);
+    }
+    event.preventDefault();
+  });
 });
