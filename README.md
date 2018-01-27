@@ -80,7 +80,7 @@ _My formula for the pizza cost was to set the base cost in the pizza object and 
 
 * Choices are in selector checkboxes
 
-* page uses images
+* Page uses images and some styling.
 
 * Refactor code and clean up code
 
