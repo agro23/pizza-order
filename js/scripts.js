@@ -71,12 +71,11 @@ $(document).ready(function(event) {
   buildToppingsForm(toppings);
   $("form#pizzaForm").submit(function(event) {
     var newSize = $("#pizzaSizes").val();
-    // var newToppings = $("#pizzaToppings").val();
     var newToppings = $('#pizzaToppings').val();
     if ( ( (newSize === "") || (newSize === null) ) || ( (newToppings.length === 0 ) || (newToppings === null) ) ) {
       alert("Please select some toppings and a size");
     } else {
-    var newPizza = new Pizza(newSize, newToppings); // instead of new toppings
+    var newPizza = new Pizza(newSize, newToppings); 
     showPizza(newPizza);
     }
     event.preventDefault();
