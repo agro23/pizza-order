@@ -29,7 +29,8 @@ Order Pizza
 
 ## Methodology
 
-# Describe the way I did it if there's time.
+_I chose to build the select boxes in the form on the fly so that the size and topping options could be changed at a later date without having to alter the HTML._
+_My formula for the pizza cost was to set the base cost in the pizza object and then calculate it against a multiplier where Medium was 1 and larger or smaller pizzas had a higher or lower multiple. So to change the prices you only need to alter the cost prototype. Additionally, each extra topping after the first just added $1 to the price._
 
 ### _The following specs are included in the program:_
 
@@ -73,13 +74,13 @@ Order Pizza
     * ONE Medium pizza with Pepperoni,Sausage,Olives
     * That will be: 12.99 please.
 
-* The user's choices are displayed to an appropriate Output panel <--
+* The user's choices are displayed to an appropriate Output panel
 
 * Output results formatted to look nicer
 
 * Choices are in selector checkboxes
 
-* page uses images for ingredients
+* page uses images
 
 * Refactor code and clean up code
 

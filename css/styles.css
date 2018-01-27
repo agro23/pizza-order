@@ -18,7 +18,11 @@ html {
 }
 
 body {
-  margin: 8em;
+  margin-left: 8em;
+  margin-right: 8em;
+  margin-bottom: 8em;
+  margin-top: 3em;
+
   padding: .5em;
   background:  url(../img/slice.jpg)
   no-repeat center center fixed;
@@ -58,7 +62,7 @@ body {
 }
 
 .fontStyling {
-  font-size: 1.75em;
+  font-size: 2em;
 }
 
 .goLeft{
@@ -73,6 +77,7 @@ body {
 h4 {
   padding: 1em;
   text-align: center;
+  font-size: .75em;
 }
 
 p {
